@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('V1')->prefix('v1')->group( function(){
 
-    Route::middleware('auth:api')->group(function () {
+    Route::middleware(['auth:api', 'role:admin'])->group(function () {
 
         Route::get('/cards', 'CardsController@list')->name('cards.list');
         Route::post('/cards', 'CardsController@create')->name('cards.create');
