@@ -4,6 +4,7 @@ namespace App;
 
 use App\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Card extends Model
 {
@@ -14,6 +15,11 @@ class Card extends Model
      * @see App\Filterable
      */
     use Filterable;
+    
+    /**
+     * Soft Delete
+     */
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -30,7 +36,7 @@ class Card extends Model
      */
     public function category()
     {
-        return $this->hasOne('App\Category');
+        return $this->belongsTo('App\Category');
     }
 
 }

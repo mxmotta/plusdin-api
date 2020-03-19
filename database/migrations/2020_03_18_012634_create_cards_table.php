@@ -22,6 +22,7 @@ class CreateCardsTable extends Migration
             $table->double('limit', 10,2)->nullable();
             $table->double('annual_fee', 10,2)->nullable();
             $table->set('brand', ['visa', 'mastercard', 'elo'])->nullable();
+            $table->softDeletes();
 
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')

@@ -15,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::namespace('V1')->prefix('v1')->group( function(){
-    Route::middleware('auth:api')->get('/user', function (Request $request) {
-        return $request->user();
+    
+    Route::post('/token', 'UsersController@token')->name('token');
+
+    Route::middleware('auth:airlock')->group(function () {
+
+        Route::get('/cards', 'CardsController@list')->name('cards.list');
+        Route::post('/cards', 'CardsController@create')->name('cards.create');
+        Route::get('/cards/{id}', 'CardsController@get')->name('cards.get');
+        Route::delete('/cards/{id}', 'CardsController@delete')->name('cards.delete');
+    
     });
-
-
-    Route::get('/cards', 'CardsController@list')->name('cards.list');
 });

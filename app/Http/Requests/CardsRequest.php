@@ -30,9 +30,11 @@ class CardsRequest extends FormRequest
         return [
             'name'          =>  ['required', 'max:80', 'unique:cards'],
             'slug'          =>  ['required', 'max:45', 'unique:cards'],
-            'limit'         =>  ['|regex:/^\d+(\.\d{1,2})?$/'],
-            'annual_fee'    =>  ['|regex:/^\d+(\.\d{1,2})?$/'],
-            'category_id'   =>  ['integer', 'exists:category']
+            'image'         =>  ['required'],
+            'limit'         =>  ['regex:/^\d+(\.\d{1,2})?$/'],
+            'annual_fee'    =>  ['regex:/^\d+(\.\d{1,2})?$/'],
+            'brand'         =>  ['required', 'in:visa,mastercard,elo'],
+            'category_id'   =>  ['required', 'integer', 'exists:categories,id']
         ];
     }
 
