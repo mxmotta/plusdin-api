@@ -17,6 +17,7 @@ class CardsController extends Controller
 
         $cards = Card::filter($filter)
             ->select([
+                'id',
                 'name',
                 'brand'
             ])
@@ -41,6 +42,33 @@ class CardsController extends Controller
                 'data' => $card
             ], 201);
         } else {
+            return response()->json([
+                'success' => false,
+                'msg' => 'Internal error, try again later!'
+            ], 500);
+        }
+    }
+
+    public function update(CardsRequest $request, $id)
+    {
+        try{
+            $card = Card::find($id);
+
+            if ($card) {
+                $card->fill($request->all())->save();
+
+                return response()->json([
+                    'success' => true,
+                    'msg' => 'Card created successfully!',
+                    'data' => $card
+                ], 201);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'msg' => "Card not found!"
+                ], 404);
+            }
+        } catch (\Exception $e){
             return response()->json([
                 'success' => false,
                 'msg' => 'Internal error, try again later!'
@@ -98,7 +126,7 @@ class CardsController extends Controller
                 return response()->json([
                     'success' => true,
                     'msg' => 'Card successfully deleted'
-                ], 201);
+                ], 200);
             }catch (\Exception $e){
                 return response()->json([
                     'success'   => false,

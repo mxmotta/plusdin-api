@@ -1,6 +1,5 @@
 <?php
 
-use App\Regional;
 use Illuminate\Database\Seeder;
 use App\User;
 
