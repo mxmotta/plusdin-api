@@ -18,7 +18,7 @@ class CardsFilter extends QueryFilters
      *
      * @return Builder
      */
-    public function name($name)
+    public function name($name = "")
     {
         if($name){
             return $this->builder
