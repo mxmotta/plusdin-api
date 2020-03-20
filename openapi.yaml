@@ -1,0 +1,334 @@
+openapi: 3.0.0
+info:
+  title: Plusdin Api
+  version: '1.0'
+servers:
+  - url: 'http://localhost'
+    variables: {}
+paths:
+  '/api/v1/cards':
+    post:
+      tags:
+        - card
+      summary: Create card
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  required: true
+                slug:
+                  type: string
+                  required: true
+                image:
+                  type: file
+                  required: true
+                limit:
+                  type: double
+                annual_fee:
+                  type: double
+                brand:
+                  type: string
+                  enum: [visa, mastercard, elo]
+                category_id:
+                  type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Card'
+                type: object
+        '400':
+          description: Validation Failed
+          $ref: '#/components/responses/ValidationFailed'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: Internal Error
+          $ref: '#/components/responses/InternalError'
+      security:
+        - bearerAuth: []
+    get:
+      tags:
+        - card
+      summary: List cards
+      parameters:
+        - name: name
+          in: query
+          description: Filter by name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Card'
+                type: object
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - bearerAuth: []
+  '/api/v1/cards/{id}':
+    get:
+      tags:
+        - card
+      summary: Return a card detail
+      parameters:
+        - name: id
+          in: path
+          description: ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Card'
+                type: object
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - card
+      summary: Edit a card
+      parameters:
+        - name: id
+          in: path
+          description: ID
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  required: true
+                slug:
+                  type: string
+                  required: true
+                image:
+                  type: file
+                  required: true
+                limit:
+                  type: double
+                annual_fee:
+                  type: double
+                brand:
+                  type: string
+                  enum: [visa, mastercard, elo]
+                category_id:
+                  type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/Card'
+                type: object
+        '400':
+          description: Validation Failed
+          $ref: '#/components/responses/ValidationFailed'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          description: Internal Error
+          $ref: '#/components/responses/InternalError'
+      security:
+        - bearerAuth: []
+    delete:
+      tags:
+        - card
+      summary: Delete a card
+      parameters:
+        - name: id
+          in: path
+          description: ID of card
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+                  msg:
+                    type: string
+                type: object
+        '400':
+          description: Bad request
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Not Found
+          $ref: '#/components/responses/NotFound'
+      security:
+        - bearerAuth: []
+  /oauth/token:
+    post:
+      tags:
+        - user
+      summary: Login api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                client_id:
+                  type: integer
+                client_secret:
+                  type: string
+                grant_type:
+                  type: string
+                  default: password
+              type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    $ref: '#/components/schemas/User'
+                type: object
+        '400':
+          description: Validation Failed
+          $ref: '#/components/responses/ValidationFailed'
+        '401':
+          description: Unauthorized
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Not found
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Card:
+      description: Card
+      properties:
+        name:
+          description: Card name
+          type: string
+        slug:
+          description: Card slug
+          type: string
+        image:
+          description: Card image
+          type: string
+        limit:
+          description: Card limit
+          type: double
+        annual_fee:
+          description: Card annual fee
+          type: double
+        brand:
+          description: Card brand '(visa, mastercard, elo)'
+          type: string
+        category_id:
+          description: Card category ID
+          type: integer
+      type: object
+    User:
+      description: Usuário
+      properties:
+        id:
+          description: ID
+          type: integer
+        name:
+          description: Username
+          type: string
+        email:
+          description: Email
+          type: string
+        password:
+          description: Senha
+          type: string
+      type: object
+    Error:
+      properties:
+        success:
+          type: boolean
+          example: 'false'
+        msg:
+          type: string
+        error:
+          type: string
+      type: object
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationFailed:
+      description: Validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalError:
+      description: Internal error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

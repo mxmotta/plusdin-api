@@ -6,7 +6,7 @@ services:
         volumes: 
         - ./:/var/www/html
         ports:
-        - 80:80
+        - 93:80
         env_file:
         - .env
         depends_on: 
@@ -21,4 +21,12 @@ services:
             MYSQL_USER: app
             MYSQL_PASSWORD: app
         ports:
-            - 3306
+            - 3306 
+    swagger_ui:
+        image: "swaggerapi/swagger-ui"
+        ports:
+        - 9000:8080
+        volumes:
+        - ./openapi.yaml:/usr/share/nginx/html/openapi.yaml
+        environment:
+            URL: openapi.yaml

@@ -20,7 +20,7 @@ Route::namespace('V1')->prefix('v1')->group( function(){
 
         Route::get('/cards', 'CardsController@list')->name('cards.list');
         Route::post('/cards', 'CardsController@create')->name('cards.create');
-        Route::put('/cards/{id}', 'CardsController@update')->name('cards.update');
+        Route::post('/cards/{id}', 'CardsController@update')->name('cards.update');
         Route::get('/cards/{id}', 'CardsController@get')->name('cards.get');
         Route::delete('/cards/{id}', 'CardsController@delete')->name('cards.delete');
     

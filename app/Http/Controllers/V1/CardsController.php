@@ -69,7 +69,7 @@ class CardsController extends Controller
      * @param $id integer
      * @return json
      */
-    public function update(CardsRequest $request, $id)
+    public function update($id, CardsRequest $request)
     {
         try{
             $card = Card::find($id);

@@ -1,6 +1,6 @@
-## Instalation
+# Plusdin API
 
-### Requeriments
+## Requeriments
 
 - PHP >= 7.2.5
 - BCMath PHP Extension
@@ -12,6 +12,8 @@
 - PDO PHP Extension
 - Tokenizer PHP Extension
 - XML PHP Extension
+
+## Installation
 
 ### Using LAMP
 
@@ -44,6 +46,11 @@
 - Generate app key (php artisan key:generate)
 - Run migrations and seeders (php artisan:migrate --seed)
 - Run server (php artisan serve)
+
+## Swagger/Openapi
+
+The docker-compose.yml file has a swagger ui service using openapi.yaml to look and test api endpoints
+Access [http://localhost:9000](http://localhost:9000) and enjoy.
 
 ---
 
