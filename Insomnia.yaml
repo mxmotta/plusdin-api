@@ -1,0 +1,340 @@
+_type: export
+__export_format: 4
+__export_date: 2020-03-20T03:02:37.921Z
+__export_source: insomnia.desktop.app:v7.1.1
+resources:
+  - _id: req_35b4d03edc6043b4987df8990993a8a7
+    authentication: {}
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"grant_type": "password",
+        	"client_id": "{{ client_id  }}",
+        	"client_secret": "{{ client_secret  }}",
+        	"username": "admin@email.com",
+        	"password": "password"
+        }
+    created: 1584577696808
+    description: ""
+    headers:
+      - id: pair_9a36f8cc31ee4b43a0032c6832ecdff9
+        name: Content-Type
+        value: application/json
+      - description: ""
+        id: pair_8efb65ab0f4a426792335f2f0a790a4e
+        name: Accept
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1584560800593
+    method: POST
+    modified: 1584665649359
+    name: Token
+    parameters: []
+    parentId: wrk_b79f5102098843ba9394450e2b9dab59
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingFollowRedirects: global
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ url_base  }}{{ oauth  }}/token"
+    _type: request
+  - _id: wrk_b79f5102098843ba9394450e2b9dab59
+    created: 1584223324578
+    description: ""
+    modified: 1584223324578
+    name: Insomnia
+    parentId: null
+    _type: workspace
+  - _id: req_5008575f4a8446948b2d797a9f4eaca3
+    authentication:
+      token: "{{ token  }}"
+      type: bearer
+    body:
+      mimeType: multipart/form-data
+      params:
+        - description: ""
+          id: pair_2c778fde5feb4fc9bdb4815b8428c044
+          name: name
+          value: ""
+        - description: ""
+          id: pair_a2450df306624de09f5f35c07297a10c
+          name: slug
+          value: ""
+        - description: ""
+          disabled: false
+          fileName: ""
+          id: pair_68b23b8049a84a659f601db730d2480d
+          multiline: false
+          name: image
+          type: text
+          value: ""
+        - description: ""
+          id: pair_7564ab1d400a4a5cb3b1d3c37b968fec
+          name: limit
+          value: ""
+        - description: ""
+          id: pair_aa0b1e567ef84c4b8f68ba970a015a77
+          name: annual_fee
+          value: ""
+        - description: ""
+          id: pair_7b6140e9780244d58989e327e2b13476
+          name: brand
+          value: ""
+        - description: ""
+          id: pair_04a43dcc1e264da289aaea2ba4fa559a
+          name: category_id
+          value: ""
+    created: 1584560800542
+    description: ""
+    headers:
+      - id: pair_9a36f8cc31ee4b43a0032c6832ecdff9
+        name: Content-Type
+        value: multipart/form-data
+      - description: ""
+        id: pair_265c1b6757404a6e8de50c24d34a4f45
+        name: Accept
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1584560800543
+    method: POST
+    modified: 1584673135476
+    name: Cards
+    parameters: []
+    parentId: wrk_b79f5102098843ba9394450e2b9dab59
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingFollowRedirects: global
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ url_base }}{{ api  }}/cards"
+    _type: request
+  - _id: req_5d20c216cf714d599e8fb42d64a703ca
+    authentication:
+      token: "{{ token  }}"
+      type: bearer
+    body:
+      mimeType: multipart/form-data
+      params:
+        - description: ""
+          id: pair_2c778fde5feb4fc9bdb4815b8428c044
+          name: name
+          value: ""
+        - description: ""
+          id: pair_a2450df306624de09f5f35c07297a10c
+          name: slug
+          value: ""
+        - description: ""
+          disabled: false
+          fileName: ""
+          id: pair_68b23b8049a84a659f601db730d2480d
+          multiline: false
+          name: image
+          type: text
+          value: ""
+        - description: ""
+          id: pair_7564ab1d400a4a5cb3b1d3c37b968fec
+          name: limit
+          value: ""
+        - description: ""
+          id: pair_aa0b1e567ef84c4b8f68ba970a015a77
+          name: annual_fee
+          value: ""
+        - description: ""
+          id: pair_7b6140e9780244d58989e327e2b13476
+          name: brand
+          value: ""
+        - description: ""
+          id: pair_04a43dcc1e264da289aaea2ba4fa559a
+          name: category_id
+          value: ""
+    created: 1584670831890
+    description: ""
+    headers:
+      - id: pair_9a36f8cc31ee4b43a0032c6832ecdff9
+        name: Content-Type
+        value: multipart/form-data
+      - description: ""
+        id: pair_265c1b6757404a6e8de50c24d34a4f45
+        name: Accept
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1584533786304.5
+    method: PUT
+    modified: 1584673286263
+    name: Cards
+    parameters: []
+    parentId: wrk_b79f5102098843ba9394450e2b9dab59
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingFollowRedirects: global
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ url_base }}{{ api  }}/cards/{% response 'body',
+      'req_5008575f4a8446948b2d797a9f4eaca3', 'b64::JC5kYXRhLmlk::46b', 'never'
+      %}"
+    _type: request
+  - _id: req_07f8abd563c14d14a77ef3acdb90bcc6
+    authentication:
+      token: "{{ token  }}"
+      type: bearer
+    body: {}
+    created: 1584506772066
+    description: ""
+    headers:
+      - description: ""
+        disabled: true
+        id: pair_12c89b539f10494ab95164de03c3beb5
+        name: Content-Type
+        value: application/json
+      - description: ""
+        disabled: false
+        id: pair_9b772b89f0ad4ff38190356ab34f1855
+        name: Accept
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1584506772066
+    method: GET
+    modified: 1584673223133
+    name: Cards
+    parameters:
+      - description: ""
+        disabled: false
+        id: pair_b8a7347f73b94eb489cf0237262c5039
+        name: name
+        value: ""
+    parentId: wrk_b79f5102098843ba9394450e2b9dab59
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingFollowRedirects: global
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ url_base }}{{ api  }}/cards"
+    _type: request
+  - _id: req_a3a9a630bdf74ce195c0eddf1dc8befa
+    authentication:
+      token: "{{ token  }}"
+      type: bearer
+    body: {}
+    created: 1584564083372
+    description: ""
+    headers:
+      - description: ""
+        id: pair_271286d57de4416c93b699ece751f363
+        name: Content-type
+        value: application/json
+      - description: ""
+        id: pair_cf2c3707fce74d57befda0ec1fbfd52c
+        name: Accept
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1584506772016
+    method: GET
+    modified: 1584673309376
+    name: Card
+    parameters: []
+    parentId: wrk_b79f5102098843ba9394450e2b9dab59
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingFollowRedirects: global
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ url_base }}{{ api  }}/cards/{% response 'body',
+      'req_5008575f4a8446948b2d797a9f4eaca3', 'b64::JC5kYXRhLmlk::46b', 'never'
+      %}"
+    _type: request
+  - _id: req_c7f77de70d134627a020414b9dfcaeac
+    authentication:
+      token: "{{ token  }}"
+      type: bearer
+    body: {}
+    created: 1584566872392
+    description: ""
+    headers:
+      - description: ""
+        id: pair_7f284a167a7b47df8986c5919c1c77ba
+        name: Content-type
+        value: application/json
+      - description: ""
+        id: pair_5fa86d47d6cd427b97ac4ab46df28aa6
+        name: Accept
+        value: application/json
+    isPrivate: false
+    metaSortKey: -1584506771966
+    method: DELETE
+    modified: 1584673328742
+    name: Card
+    parameters: []
+    parentId: wrk_b79f5102098843ba9394450e2b9dab59
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingFollowRedirects: global
+    settingRebuildPath: true
+    settingSendCookies: true
+    settingStoreCookies: true
+    url: "{{ url_base }}{{ api  }}/cards/{% response 'body',
+      'req_5008575f4a8446948b2d797a9f4eaca3', 'b64::JC5kYXRhLmlk::46b', 'never'
+      %}"
+    _type: request
+  - _id: env_5c0ac3abdf8b8bec523d9f3379d263d77d258d46
+    color: null
+    created: 1584223324655
+    data:
+      api: /api/v1
+      client_id: 2
+      client_secret: ""
+      oauth: /oauth
+      token: "{% response 'body', 'req_35b4d03edc6043b4987df8990993a8a7',
+        'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'never' %}"
+      url_base: http://localhost
+    dataPropertyOrder:
+      "&":
+        - url_base
+        - api
+        - oauth
+        - client_id
+        - client_secret
+        - token
+    isPrivate: false
+    metaSortKey: 1584223324655
+    modified: 1584669212765
+    name: Base Environment
+    parentId: wrk_b79f5102098843ba9394450e2b9dab59
+    _type: environment
+  - _id: jar_5c0ac3abdf8b8bec523d9f3379d263d77d258d46
+    cookies:
+      - creation: 2020-03-19T00:18:40.459Z
+        domain: localhost
+        expires: 2020-03-19T06:14:58.000Z
+        extensions:
+          - samesite=lax
+        hostOnly: true
+        id: "814131646350067"
+        key: XSRF-TOKEN
+        lastAccessed: 2020-03-19T04:14:58.045Z
+        maxAge: 7200
+        path: /
+        value: eyJpdiI6IkRFQXhDM1p2Y0JsZkVUakVvSGk1bkE9PSIsInZhbHVlIjoiTFYrWWd4NkNGTmhyQU9RdTBmS0JrMnNGeTdnN2RaSm1laGZzaUs4RlFRVEVEbEpyMlF6eDVEUzhjT0pQeFFQbCIsIm1hYyI6ImZhNDdmODJkNzAwZmQ0NDUzNThiZjhmODI5MzEyY2IzMmZhYzQyMDY0MjA5MGVjOTFlYmQ4OWE1MzgzYWJiNjgifQ%3D%3D
+      - creation: 2020-03-19T00:18:40.460Z
+        domain: localhost
+        expires: 2020-03-19T06:14:58.000Z
+        extensions:
+          - samesite=lax
+        hostOnly: true
+        httpOnly: true
+        id: "03394474760164656"
+        key: laravel_session
+        lastAccessed: 2020-03-19T04:14:58.045Z
+        maxAge: 7200
+        path: /
+        value: eyJpdiI6InhhUU1FTFgvbHErc3pHNjVxSXdxcUE9PSIsInZhbHVlIjoiMkpVM1pKcEptUVcvaCsrOFl4L29rdU14VHZmSmVSN0M3WTFVQzFleEpocVlRenhUUGlHc3pmMWZ4QlQ4RXMxVCIsIm1hYyI6ImYzOWE0MjY2OGE3Yzc4ZjUxNDdjMDAwMzJhM2E2ZmE1OTE4YzJhOWY5NzkxYWVhOTIzMDBjYjllNmEzYzBhNTMifQ%3D%3D
+    created: 1584223324668
+    modified: 1584591298045
+    name: Default Jar
+    parentId: wrk_b79f5102098843ba9394450e2b9dab59
+    _type: cookie_jar

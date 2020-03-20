@@ -44,3 +44,8 @@
 - Generate app key (php artisan key:generate)
 - Run migrations and seeders (php artisan:migrate --seed)
 - Run server (php artisan serve)
+
+---
+
+*Obs: To test endpoints, import Insomnia.yaml in your Insomia workspace*
+
