@@ -9,10 +9,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CardsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class CardsController extends Controller
 {
 
+    /**
+     * List cards
+     * @param $filter string
+     * @return json
+     */
     public function list(CardsFilter $filter){
 
         $cards = Card::filter($filter)
@@ -31,9 +37,17 @@ class CardsController extends Controller
         return response()->json($cards);
     }
 
+    /**
+     * Create card
+     * @param $request Request
+     * @return json
+     */
     public function create(CardsRequest $request)
     {
         $card = Card::create($request->all());
+        $file = $request->file('image')->store('card/' . $card->id);
+
+        $card->fill(['image' => $file])->save();
 
         if ($card) {
             return response()->json([
@@ -49,13 +63,25 @@ class CardsController extends Controller
         }
     }
 
+    /**
+     * Update card
+     * @param $request Request
+     * @param $id integer
+     * @return json
+     */
     public function update(CardsRequest $request, $id)
     {
         try{
             $card = Card::find($id);
-
+            $data = $request->input();
+            
+            Storage::delete($card->image);
+            $file = $request->file('image')->store('card/' . $card->id);
+            
+            $data['image'] = $file;
+            
             if ($card) {
-                $card->fill($request->all())->save();
+                $card->fill($data)->save();
 
                 return response()->json([
                     'success' => true,
@@ -77,6 +103,11 @@ class CardsController extends Controller
     }
 
     
+    /**
+     * Get card
+     * @param $id integer
+     * @return json
+     */
     public function get($id){
 
         
@@ -115,6 +146,11 @@ class CardsController extends Controller
         }
     }
 
+    /**
+     * Delete card
+     * @param $id integer
+     * @return json
+     */
     public function delete($id){
 
         $card = Card::find($id);
@@ -122,6 +158,7 @@ class CardsController extends Controller
         if($card){
             try{
                 $card->delete();
+                Storage::delete($card->image);
             
                 return response()->json([
                     'success' => true,

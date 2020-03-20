@@ -18,7 +18,7 @@ class CreateCardsTable extends Migration
             $table->increments('id')->unsigned();
             $table->string('name', 80)->unique();
             $table->string('slug', 45)->unique();
-            $table->string('image', 45)->nullable();
+            $table->string('image')->nullable();
             $table->double('limit', 10,2)->nullable();
             $table->double('annual_fee', 10,2)->nullable();
             $table->set('brand', ['visa', 'mastercard', 'elo'])->nullable();
